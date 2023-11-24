@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+
+<body>
+
+<div class="mx-auto rounded" style="max-width: 200px; margin-top:1%">
+    <p class="display-4">New lesson</p>
+    <div class="container p-3 my-3 rounded " style="background-color:#99e2e0;">
+        <form method="POST">
+            <div class="form-group rounded">
+                <p>seleziona data</p>
+                <input type="date" id="dateStandard" name="dateStandard">
+            </div>
+
+        <div class="form-group" style="max-width: 150px;">
+          <p>seleziona ora</p>
+          <input type="time" id="timeStandard" name="timeStandard">
+        </div>
+
+
+        <div class="form-group " style="max-width: 150px;">
+            <label for="selezioneMod">Modalità: </label>
+            <select class="form-control" id="selezioneMod" name="selezioneMod">
+              <option>Offline</option>
+              <option>Online</option>
+            </select>
+          </div>
+             <input type="submit" href="/course/courses/info/{{id}}" class="btn btn-dark margin-bottom: 10%;" style="margin-top: 10%; " value="Conferma">
+        </form>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

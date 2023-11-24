@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+{% block title %}ProgBasi2022{% endblock %}
+{% block content%}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+  </head>
+
+<body>
+<img src="http://www.bs-eng.net/wp-content/uploads/2021/07/20210615_080301.jpg" class="img-fluid" alt="Responsive image" style="width: 1550px;">
+<div class="container rounded" style="position: absolute; left: 200px; top: 500px; z-index: 2; width: 1315px; background-color: #b8e6e4">
+    <p class="font-italic display-4"><font color="#007483">Dipartimento di
+                                        Scienze Ambientali, Informatica e Statistica</font></p>
+    <p class="font-italic">Il dipartimento di Scienze Ambientali, Informatica e Statistica svolge la sua attività di ricerca in diversi campi, dalle scienze ambientali,  all’informatica e alla statistica, fino alle tecnologie per la conservazione dei beni culturali. </p>
+    <p class="font-italic">I nostri  temi di ricerca intersecano quelli della transizione ecologica e della trasformazione digitale, considerate oggi passaggi obbligati per un nuovo sviluppo sostenibile della società e dell’economia.</p>
+    <p class="font-italic">La ricerca, svolta spesso con un approccio interdisciplinare, viene sviluppata anche in collaborazione con enti pubblici e realtà del territorio, ed è finanziata tramite diversi bandi competitivi a livello regionale, nazionale ed europeo.</p>
+
+    <h1><font color="#007483">possiamo offrirvi questo, al massimo vi cantiamo una canzone</font></h1>
+
+<div class="latest-course-block">
+
+    <div class="row">
+
+        {% if len>3%} <!--ATTENTO, QUANDO IL SITO è NUOVO E NON CI SONO CORSI-->
+      {%for i in range(0,3)%} <!-- questo è un commento -->
+  <div class="col">
+    <div class="card" style="max-width: 400px;">
+      <div class="card-body">
+        <a href="#" class="card-title h3" style="color:black;">{{corsi[i].nome}}</a>
+        <br>
+        <a class="card-text">{{prof[i]}}</a>
+      </div>
+    </div>
+  </div>
+    {% endfor %} <!-- questo è un commento -->
+        {% endif %}
+    </div>
+</div>
+
+</div>
+</body>
+</html>
+{% endblock%}

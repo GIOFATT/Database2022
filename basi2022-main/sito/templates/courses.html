@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}Courses{% endblock %}
+{% block content%}
+<title>Courses</title>
+
+<html>
+<body style="background-color:#99e2e0;">
+<div style="background-color:#99e2e0;">
+<div class="mx-auto" style="max-width: 200px;">
+<h1 class="display-4" style="margin-top:1%; background-color:#99e2e0;">Corsi:</h1>
+  </div>
+<div class="row" style="margin-top:5%; background-color:#99e2e0;">
+ {%for i in range(0, len)%}
+  <div class="col-sm-2">
+    <div class="card">
+      <div class="card-body" style="background-color:#ffffff;">
+        <a class="card-title h3" style="color:black;">{{corsi[i].nome}}</a>
+        <br>
+        <a class="card-text">{{prof[i]}}</a>
+        <br>
+        <br>
+
+        {% if corsi[i].id in listcorsi %}
+        <a href="/course/courses/info/{{corsi[i].id}}" class="btn btn-primary">Sei gia iscritto</a>
+        {%endif%}
+        {% if lenlistacorsi==0 or corsi[i].id not in listcorsi %}
+        <a href="/course/iscrizione/{{corsi[i].id}}" class="btn btn-primary">Iscrivimi</a>
+        {%endif%}
+
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+</div>
+</div>
+</body>
+</html>
+{% endblock %}
+

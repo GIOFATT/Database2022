@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Corso info</title>
+<style>
+  #listaLezioni{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  height: 250px;
+  overflow: scroll;
+  }
+</style>
+
+</head>
+
+<body>
+<h1 class="display-4">{{name}}</h1>
+<blockquote class="blockquote text-right">
+    <p class="mb-0" style="font-family:Segoe UI;">{{profsurname + " " + profname}}</p>
+</blockquote>
+
+<blockquote class="blockquote text-right">
+    <p class="mb-0" style="font-family:Segoe UI;">MODALITA':   {{mode}}</p>
+</blockquote>
+
+{% if user.isadmin == True %}
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-danger" href="/course/courses/remove_course/{{id}}" role="button" style=" margin-right: 5%;">ELIMINA CORSO</a>
+    </div>
+{% endif %}
+
+
+<blockquote class="blockquote text-center">
+  <p class="mb-0">{{description}}</p>
+</blockquote>
+
+<!--Se utente è studente allora può disiscriversi-->
+{% if user.isadmin == False and user.isprofessor == False %}
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-dark" href="/course/unsubscribe/{{id}}" role="button" style=" margin-right: 5%;">DISISCRIVITI</a>
+    </div>
+{% endif %}
+
+<h1 style="font-family:Segoe UI;">Lista lezioni:</h1>
+
+<ul class="list-group" id="listaLezioni">
+    {%for i in range(0, len)%}
+  <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-dark">
+      <p>{{lessons[i].data}}</p>
+      {% if user.isadmin == True or user.isprofessor == True %}
+        <a type="button" href="/lesson/lesson/remove_lesson/{{lessons[i].id}}" class="btn btn-dark btn-sm">elimina</a>
+        {% endif %}
+    <span class="badge badge-pill badge-dark">{{lessons[i].modalita}}</span>
+  </li>
+    {% endfor %}
+</ul>
+
+
+ {% if user.isadmin == True or user.isprofessor == True %}
+<a type="button" href="/lesson/lesson/add_lesson/{{id}}" role="button" class="btn btn-info btn-lg" style="margin-left: 15%; margin-top: 1%;" > + Aggiungi Lezione</a>
+ {% endif %}
+
+{% if user.isadmin == True or user.isprofessor == True %}
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-dark" href="/course/courses/modify_course/{{id}}" role="button" style=" margin-right: 5%;">MODIFICA CORSO</a>
+    </div>
+{% endif %}
+
+
+</body>
+</html>
+{% endblock %}

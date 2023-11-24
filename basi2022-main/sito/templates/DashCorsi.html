@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block title %}DashCourses{% endblock %}
+{% block content%}
+<title>DashCourses</title>
+<html>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+{% if (user.isadmin == True) or (user.isprofessor == True) %}
+<body style="background-color:#ffce00;">
+<div style="background-color:#ffce00;">
+
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large"
+    onclick="w3_close()">Close &times;</button>
+    <a href="/course/courses/dash" class="w3-bar-item w3-button">I miei Corsi</a>
+    <a href="/analitics/analitics" class="w3-bar-item w3-button">Analitica</a>
+    {% if (user.isadmin == True)%}
+    <a href="/admin/usersearch/dash" class="w3-bar-item w3-button">User</a>
+    {% endif %}
+  </div>
+
+  <div id="main">
+
+  <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+
+
+
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-dark" href="/course/courses/add_course" role="button" style=" margin-right: 5%;">+ AGGIUNGI NUOVO CORSO</a>
+    </div>
+
+    <div class="mx-auto" style="max-width: 300px; margin-top:1%">
+    <h1 class="display-4">Tutti i corsi:</h1>
+
+
+
+  {% else %}
+<body style="background-color:#1ac0cb;">
+<div style="background-color:#1ac0cb;">
+  <div class="cont">
+<div class="mx-auto" style="max-width: 300px; margin-top:1%">
+<h1 class="display-4">I miei corsi:</h1>
+  {% endif %}
+  </div>
+    <div class="row" style="margin-top:1%">
+{%for i in range(0, len)%}
+  <div class="col-sm-2">
+    <div class="card" style="max-width: 400px;">
+      <div class="card-body">
+        <a href="/course/courses/info/{{corsi[i].id}}" class="card-title h3" style="color:black;">{{corsi[i].nome}}</a>
+        <br>
+        <p class="card-text">{{prof[i]}}</p>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+</div>
+</div>
+</div>
+
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+
+
+</body>
+</html>
+{% endblock %}
+

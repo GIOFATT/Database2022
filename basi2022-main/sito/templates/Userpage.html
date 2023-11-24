@@ -1,0 +1,97 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profilo</title>
+</head>
+<style>
+  .gradient-custom {
+/* fallback for old browsers */
+background: #f6d365;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgba(255, 154, 0, 1), rgba(255, 206, 0, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(255, 154, 0, 1), rgba(255, 206, 0, 1));
+}
+</style>
+
+<body>
+<section class="vh-100" style="background-color: #f4f5f7;">
+<div class="mx-auto" style="max-width: 100px;">
+  <h1 class="display-4">Profilo</h1>
+</div>
+
+{% if current_user.isadmin == True %}
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-danger" href="/admin/admin/remove_user/{{user.id}}" role="button" style=" margin-right: 5%;">Elimina utente</a>
+    </div>
+{% endif %}
+
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5>{{user.nome + " "+user.cognome}}</h5>
+               {% if role==1 %}
+              <p>Admin</p>
+              {% endif %}
+              {% if role==2 %}
+              <p>Docente</p>
+              {% endif %}
+              {% if role==3 %}
+              <p>Studente</p>
+              {% endif %}
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{user.email}}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Genere</h6>
+                    <p class="text-muted">{{user.genere}}</p>
+                  </div>
+                </div>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Birthday</h6>
+                    <p class="text-muted">{{user.compleanno}}</p>
+                  </div>
+                </div>
+                {% if current_user.isadmin == True %}
+                <div class="d-flex justify-content-start">
+                 <a type="button" href="/admin/admin/modify_user/{{user.id}}" role="button" class="btn btn-outline-warning">Modifica</a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if current_user.isadmin == False %}
+<div class="d-flex flex-column align-items-end">
+      <a class="btn btn-outline-info" href="/user/user/modify_password" role="button" style=" margin-right: 5%;">Modifica Password</a>
+    </div>
+{% endif %}
+      </div>
+    </div>
+  </div>
+
+</section>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Corso</title>
+</head>
+<body>
+<div  class="mx-auto" style="max-width: 700px; margin-top:1%; background-color:#8fd179;">
+    <form method="POST" style=" background-color:#8fd179;">
+    <!--form  class="mx-auto" style="max-width: 600px; background-color:#8fd179;"-->
+        <!--Inserisci nome del corso-->
+      <div class="mx-auto" style="max-width: 480px;">
+        <p class="display-4">Nuovo corso</p>
+        <input type="text" class="form-control" id="nomecorso" aria-describedby="NOME CORSO"
+               placeholder="Inserisci nome del corso">
+      </div>
+    <!--Seleziona insegnante-->
+      {% if user.isadmin == True %}
+      <div class="mx-auto" style="max-width: 380px; margin-top: 20px;">
+          <div class="form-group">
+            <label for="profselect">Seleziona insegnante</label>
+            <select multiple class="form-control" id="profselect">
+              {%for i in range(0, lenins)%}
+               <option>{{insegnanti[i].nome + " " +insegnanti[i].cognome}}</option>
+             {% endfor %}
+            </select>
+         </div>
+      </div>
+
+      {% endif %}
+        <!--Inserisci descrizione-->
+      <div>
+          <label for="descrizione">Descizione:</label>
+          <input type="text" class="form-control" id="descrizione" rows="3" placeholder="Questa sarà la descrizione del corso bla bla bla"></input>
+      </div>
+        <div class="mx-auto" style="max-width: 200px;">
+        <label for="mod">Modalità: </label>
+        <select class="form-control" id="mod">
+          <option>Offline</option>
+          <option>Online</option>
+          <option>Mista</option>
+        </select>
+      </div>
+        <input type="submit" class="btn btn-success" style="margin-left: 10%; " value="Crea">
+
+    </form>
+<!--/form-->
+
+</div>
+</body>
+</html>
+{% endblock %}

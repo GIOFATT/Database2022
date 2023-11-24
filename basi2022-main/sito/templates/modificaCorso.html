@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Corso</title>
+</head>
+<body>
+
+<div  class="mx-auto text-center text-white rounded " style="max-width: 700px; margin-top:1%; background-color:#1ac0c6;  mborder-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+    <form method="POST" style="background-color:#1ac0c6;">
+        <!--Inserisci nome del corso-->
+      <div class="mx-auto rounded " style="max-width: 480px;">
+        <p class="display-4">Modifica Corso</p>
+          {% if user.isadmin == True %}
+        <input type="text" class="form-control" id="nomecorso" name="nomecorso" aria-describedby="NOME CORSO"
+               placeholder="Inserisci nome del corso" value="{{corso.nome}}">
+           {% endif %}
+          {% if user.isadmin == False %}
+          <h1>{{corso.nome}}</h1>
+          {% endif %}
+      </div>
+    <!--Seleziona insegnante-->
+      {% if user.isadmin == True %}
+      <div class="mx-auto" style="max-width: 380px; margin-top: 20px;">
+          <div class="form-group">
+            <label for="profselect">Seleziona insegnante</label>
+            <select multiple class="form-control" id="profselect" name="profselect">
+              {%for i in range(0, lenins)%}
+               <option>{{insegnanti[i].nome + " " +insegnanti[i].cognome}}</option>
+             {% endfor %}
+            </select>
+         </div>
+      </div>
+
+      {% endif %}
+        <!--Inserisci descrizione-->
+      <div>
+          <label for="descrizione">Descrizione:</label>
+          <input type="text" class="form-control" name="descrizione" id="descrizione" rows="3"  value="{{corso.descrizione}}" placeholder="Questa sarà la descrizione del corso bla bla bla" ></input>
+      </div>
+        <div class="mx-auto" style="max-width: 200px;">
+        <label for="mod">Modalità: </label>
+        <select class="form-control" id="mod" name="mod">
+          <option>Offline</option>
+          <option>Online</option>
+          <option>Mista</option>
+        </select>
+      </div>
+        <div class="mx-auto" style="max-width: 80px; margin-top: 5%;">
+                  <input type="submit" href="/course/courses/info/{{id}}" class="btn btn-dark" style="margin-left: 10%; margin-bottom: 10%;" value="Conferma">
+        </div>
+
+    </form>
+
+    </div>
+</body>
+</html>
+{% endblock %}

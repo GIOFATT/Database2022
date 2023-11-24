@@ -1,0 +1,37 @@
+{% extends "base.html"%}
+{% block title %}Iscriviti ProgBasi2022{% endblock %}
+{% block content%}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--Carica il css da .static-->
+<link rel="stylesheet" href="{{url_for('.static', filename='loginstyle.css')}}">
+
+<div class="wrapper fadeInDown">
+    <div id="formContentLarge">
+        <!-- Tabs Titles -->
+        <div class="fadeIn first">
+          <h3>Registrazione</h3>
+        </div>
+
+
+        <!--Form per l'iscrizione-->
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" class="fadeIn second" id="nomecorso" name="nomecorso" placeholder="Nome Corso"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="fadeIn second" id="Descrizione" name="descrizione" placeholder="Descrizione"/>
+            </div>
+            <label for="mod" class="fadeIn second">Seleziona tipologia:</label>
+              <select class = "fadeIn second" name="mod" id="mod">
+                <option value="maschio">Online</option>
+                <option value="femmina">Offline</option>
+                <option value="altro">Misto</option>
+              </select>
+
+
+            <input type="submit" class="fadeIn fourth" value="Invia">
+        </form>
+    </div>
+</div>
+{% endblock%}

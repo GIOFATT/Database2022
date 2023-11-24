@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profilo</title>
+</head>
+<style>
+  .gradient-custom {
+/* fallback for old browsers */
+background: #f6d365;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgba(255, 154, 0, 1), rgba(255, 206, 0, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(255, 154, 0, 1), rgba(255, 206, 0, 1));
+}
+</style>
+<body>
+<div  class=" mx-auto gradient-custom text-center text-white rounded " style="max-width: 700px; margin-top:4%; mborder-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+    <form method="POST" >
+        <!--Inserisci nome del corso-->
+        <p class="display-4">Modifica user</p>
+        <div class="mx-auto" style="max-width: 500px;">
+            <div class="row">
+      <div class="col-xs-6" style="max-width:260px;">
+        <input type="text" class="form-control" id="nomeuser" name="nomeuser" aria-describedby="NOME"
+               placeholder="Nome" value="{{user.nome}}">
+      </div>
+        <div class="col-xs-6" style="max-width:260px;">
+        <input type="text" class="form-control" id="cognomeuser" name="cognomeuser" aria-describedby="COGNOME"
+               placeholder="Cognome" value="{{user.cognome}}">
+      </div>
+            </div>
+        </div>
+        <div class="mx-auto" style="max-width: 200px;">
+        <label for="role">ruolo: </label>
+        <select class="form-control" id="role" name="role">
+          <option>admin</option>
+          <option>studente</option>
+          <option>docente</option>
+        </select>
+      </div>
+
+        <div class="mx-auto" style="max-width:260px;">
+        <input type="text" class="form-control" style="margin-top: 5%;" id="email" name="email" aria-describedby="email"
+               placeholder="email@email.com" value="{{user.email}}">
+      </div>
+
+        <div class="mx-auto" style="max-width: 200px;">
+        <label for="gen">genere: </label>
+        <select class="form-control" id="gen" name="gen">
+          <option>maschio</option>
+          <option>femmina</option>
+          <option>altro</option>
+        </select>
+      </div>
+
+        <div class="mx-auto" style="max-width: 80px; margin-top: 5%;">
+                  <input type="submit" class="btn btn-warning" style="margin-bottom: 10%; " value="Conferma">
+        </div>
+
+    </form>
+
+    </div>
+
+</body>
+</html>
+{% endblock %}
